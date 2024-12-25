@@ -1,0 +1,60 @@
+#include <stdio.h>
+
+#define MAX 1000
+
+int string_length(char str[]) {
+    int len = 0;
+    while (str[len] != '\0')
+        len++;
+    return len;
+}
+
+void find_and_replace(char str[], char pat[], char rep[]) {
+    char result[MAX]; 
+    int i = 0, j = 0, k, start, found = 0;
+    int str_len = string_length(str);
+    int pat_len = string_length(pat);
+    int rep_len = string_length(rep);
+    
+    while (i < str_len) {
+        start = i;
+        for (k = 0; k < pat_len; k++) {
+            if (str[i + k] != pat[k])
+                break;
+        }
+
+        if (k == pat_len) {
+            found = 1;
+
+            for (k = 0; k < rep_len; k++) {
+                result[j++] = rep[k];
+            }
+            i += pat_len; 
+        } else {
+            result[j++] = str[i++];
+        }
+    }
+
+    result[j] = '\0';
+
+    if (found) {
+        printf("Modified String: %s\n", result);
+    } else {
+        printf("Pattern not found in the main string.\n");
+    }
+}
+
+int main() {
+    char str[MAX], pat[MAX], rep[MAX];
+    printf("Enter the main string (STR): ");
+    gets(str);
+
+    printf("Enter the pattern string (PAT): ");
+    gets(pat);
+
+    printf("Enter the replacement string (REP): ");
+    gets(rep);
+    find_and_replace(str, pat, rep);
+
+    return 0;
+}
