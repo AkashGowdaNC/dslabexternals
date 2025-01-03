@@ -9,9 +9,7 @@ char *description;
 void create(struct Day calendar[7]) {
 for (int i = 0; i < 7; i++) {
 calendar[i].name = (char *)malloc(50 * sizeof(char)); 
-name is 50 characters
 calendar[i].description = (char *)malloc(100 * sizeof(char)); 
-description is 100 characters
 }
 }
 void read(struct Day calendar[7]) {
